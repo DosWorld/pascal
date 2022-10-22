@@ -1,10 +1,12 @@
 
 All of these are in the public domain:
 
-- pascal-s :: edu pascal subset compiler - niklaus wirth, et al ( 1976 )
-- p4 :: pascal compiler - niklaus wirth, et al ( 1976 )
-- web :: literate programming - donald knuth  ( 1981 )
-- super :: super pascal ( parallel programming ) - per brinch hansen ( 1993 )
-- p5 :: ISO 7185 compliant extensions to p4 - scott moore ( 2009 )
-- xdp :: TP 3.0-style pascal compiler - vasiliy tereshkov ( 2010 )
+- plzero :: pl0 compiler - very small pascal dialect by Niklaus Wirth
+- pascal-s :: edu pascal subset compiler - Niklaus Wirth, et al ( 1976 )
+- p4 :: pascal compiler - Niklaus Wirth, et al ( 1976 )
+- web :: literate programming - Donald Knuth  ( 1981 )
+- super :: super pascal ( parallel programming ) - per Brinch Hansen ( 1993 )
+- p5 :: ISO 7185 compliant extensions to p4 - Scott Moore ( 2009 )
+- xdp :: TP 3.0-style pascal compiler - Vasiliy Tereshkov ( 2010 )
+- berotiny :: BeRoTinyPascal - A self-hosting capable tiny pascal compiler for the Win32 x86 platform https://github.com/BeRo1985/berotinypascal
 - p2c :: a Pascal to C translator 2.02 by Dave Gillespie http://users.fred.net/tds/lab/p2c/
