@@ -1,0 +1,842 @@
+                        TINY PASCAL
+===========================================================
+
+                       INTRODUCTION
+     Radio Shack's Tiny Pascal is a cassette-based system  
+for creating, editing, compiling, and executing Pascal pro-
+grams. Tiny Pascal is a subset of the standard Pascal lang-
+uage.
+     This manual summarizes Tiny Pascal and explains how to
+use the software package.
+     The disk version of Tiny Pascal has been modified and 
+re-located to run in 48K systems. It will run on TRS-80 
+Model I or System 80 with 48K and at least one disk drive.
+
+
+1/OVERVIEW OF THE SYSTEM
+
+     Tiny Pascal is a complete, self-contained operating 
+system for creating, compiling, running, saving and loading
+Pascal programs for the TRS-80. Once you have loaded Tiny 
+Pascal, you can use all the 'subsystems':
+
+     *     MONITOR: Provides run-time support, checks for 
+errors, and provides the necessary utilities to save and 
+load programs to and from cassette tape (disk).
+
+     *     COMPILER: Compiles your Pascal source program 
+into P-code, ready to be executed. The compiler also checks
+for syntax errors.
+
+     *     EDITOR: Lets you create or modify Tiny Pascal
+source programs
+
+All three subsystems are loaded simultaneously, and are
+always present in RAM, unless you choose to overwrite
+portions to free memory space.
+
+
+OVERVIEW OF THIS MANUAL
+
+Chapters 2 through 4 of this manual discuss in detail the
+three subsystems, what they do, and how to use them.
+Chapter 5 deals with the specific aspects, limitations and
+enhancements to Tiny Pascal. Then follows a chapter on
+Getting Started to help you through the first time you
+bring Tiny Pascal up. Finally, you will find the error
+codes, syntax diagrams, listings of sample programs, and
+other useful information.
+
+2/THE MONITOR
+
+All operations make at least some use of the Monitor, so we
+will begin our description of the Tiny Pascal system with
+it. The Monitor provides run-time support to the entire
+system, as well as providing you with a means of
+saving/loading source programs and P-code (compiled)
+programs via cassette tape or disk depending on the
+version. From the Monitor, you also give the command to
+compile a program, or to run it, or to invoke the Editor.
+
+
+MONITOR COMMANDS :
+
+E             Edit old source file or create a new one.
+C             Compile source program into P-code, ready to
+              be executed. P-code is stored after source in
+              RAM.
+C/-P          Compile source, but do not generate P-code
+              (useful for checking for syntax errors).
+C/-S          Compile source, and overwrite source with
+              P-code (used with very large programs). You
+              will have to re-load or re-type the source
+              program if you want to edit it later.
+R             Run the compiled program
+R/-C          Run the compiled program and overwrite the
+              Editor and the Compiler. You will have to
+              re-load the Pascal system if you want to edit
+              or compile a program later.
+
+LSfilename    Load SOURCE program from tape (disk).
+LPfilename    Load P-code program from tape (disk).
+
+WSfilename    Save SOURCE program to tape (disk).
+WPfilename    Save P-code program to tape (disk).
+
+Note that you may choose to overwrite sections of the Tiny
+Pascal system if you need the space for a large program.
+However, you must remember that the overwritten sections
+are gone and you must re-load the entire system if you are
+to use them again.
+
+A filename can be at most six characters long. When loading
+a program, either in source or P-code format, the filename
+must be entered EXACTLY as it was saved. That is, when
+loading the Tiny Pascal system or when reloading a program
+you have saved, you must be sure to use the correct and
+complete name.
+
+If you accidently type in the wrong file name when
+requesting a load, the Tiny Pascal system may never return
+control to the keyboard and you will have to reset and
+reload the entire system again. Also, there is no way to
+find out the names of files on tape, so you must remember
+to write down the filenames used exactly.
+
+
+3/THE EDITOR
+
+The editor provided with the Tiny Pascal package enables
+you to create and modify source programs.
+
+The Pascal Editor is line oriented, but, unlike BASIC, does
+not use line numbers since they are not used in the Pascal
+language. the maximum number of lines of text that you can
+have is 600, and the maximum line length is 130 characters.
+
+All Editor commands are single characters; some may have
+numeric arguments after them, or a character string. In our
+discussion of the Editor, xx refers to INTEGER NUMBERS
+(1-999), and <string> refers to a string. Each command ends
+with a carriage return (<ENTER> on the TRS-80 keyboard).
+Invalid commands are flagged with the message 'ILLEGAL'.
+
+The line pointer always  oints to the line most recently
+displayed, modified or inserted. After a DELETE command,
+the line pointer is moved up one line. ghen you first load
+the Tiny Pascal system, a sample program is loaded as well.
+Thus when you type 'E' to enter Edit mode, a file is
+already there. You will see a '>'. This is the prompt from
+the Editor that lets you know that it is waiting for a
+command (NOT text). The commands are listed below.
+
+To erase a source program, use the 'D*' command. After a
+'D*', the Editor will automatically put you into INSERT
+mode and wait for text.
+
+
+EDITOR COMMANDS :
+
+Note : * means 'entirely' or 'all the way':
+
+<ENTER>     A carriage return on an empty line will exit
+            from INSERT mode.
+P           Prints the CURRENT line.
+Pxx         Prints xx lines starting from the CURRENT line.
+P*          Prints entire file.
+
+U           Moves UP one line.
+Uxx         Moves UP xx lines.
+U*          Moves UP to top or first line of file.
+
+N           Moves line pointer to NEXT line (down).
+Nxx         Moves line pointer down xx lines.
+N*          moves line pointer to last line of file.
+
+D           Deletes the CURRENT line.
+Dxx         Deletes xx lines starting at the CURRENT line.
+D*          Deletes the entire file. This automatically
+            goes to INSERT MODE and waits for text.
+
+I           enters Insert mode. Begins inserting lines
+            AFTER CURRENT LINE POINTER. A '?' is displayed
+            to prompt you. Press <ENTER> at the beginning
+            of a line to exit from Insert mode.
+
+R<string>   Replaces the current line by <string>
+
+X           EXTENDS current line. The current line is
+            displayed and the cursor is positioned to the
+            end of the line, allowing characters to be
+            appended. Press <ENTER> to save changes and
+            return to the Editor.
+
+S           Displays STATUS: Number of lines, file
+            location, position of line pointer.
+
+Q           Quits and returns to the Tiny Pascal Monitor.
+
+The Editor also recognises two special keys: the back-arrow
+for backspace, and the right-arrow for tab, which is three
+spaces. These dwo keys may be used at any time editing a
+command or input file. Backspacing over a tab moves the
+cursor three spaces back on the display and erases the tab.
+
+To illustrate: If you want to enter a program, you would
+type 'E' from the Monitor, then you would type 'I' for
+Insert. You then can enter text. To stop entering text, you
+press <ENTER> on an empty line.
+
+If a 'MEMORY FULL' error occurs while editing or inserting,
+the source file is too big. You may be able to pack in the
+program by eliminating extra spaces and tabs.
+
+You should experiment with the Editor for a while to make
+sure that you completely understand its operation.
+
+
+4/THE COMPILER
+
+A Compiler is a program that translates the statements of a
+high level language into an equivalent program of
+machine-readable form. Tiny Pascal translates the
+high-level source program into an intermediate file called
+P-code. The P-code is then interpreted, using the run-time
+Monitor for support. The result is a program which executes
+at least four times faster, and up to eight times faster
+than BASIC !
+
+Tiny Pascal is a sub-set of standard Pascal. The syntax is
+essentially identical to the full language. Syntax diagrams
+have been included in Appendix C for those who are just now
+learning the language.
+
+This manual is not an instructional text on Pascal
+programming, but rather an explanation of the limits and
+special features of Tiny Pascaln However, we will review
+some essential points in the next section.
+
+For those who need a more thorough introduction, we
+recommend the following : (modified from the original text)
+
+INTRODUCTION TO PASCAL. Rodnay Zaks. SYBEX 1981.
+PASCAL FOR BASIC PROGRAMMERS. Seiter/Weiss. ADDISON-WESLEY
+   1983.
+SIMPLE PASCAL. McGregor/Watt. PITMAN 1981.
+COMPUTER PROGRAMMING IN PASCAL. Lightfoot. TEACH YOURSELF
+   1983.
+
+
+COMPILER SPECIFICS :
+
+1. Maximum number of procedure or function parameters is
+15; maximum number of procedure nests is seven levels; the
+symbol table is restricted to 75 entries (200 for big
+version).
+2. ':=' is used for assignment and '=' is used for
+equality. THEY ARE NOT INTERCHANGEABLE !!!
+3. ';' is used to separate statements, NOT to end them.
+Thus the last ';' in a compound statement :
+
+       BEGIN statement
+         statement;
+         IF exp THEN exp ELSE exp;
+         statement;
+       END
+
+   is NOT necessary. (It is, however, allowed since a
+Pascal statement can be a null). Note the absence of ';'
+before an ELSE or an END in a CASE statement.
+4. Expressions may be either arithmetic or logical
+(Boolean). Thus the following are legal :
+
+       A:=B>C;
+       .
+       .
+       IF A+B THEN...
+
+   NOTE: The Boolean operator OR has the same precedence as
+the arithmetic operators '+' and '-'. AND has the same
+precedence as '*' and DIV, etc. It is important to remember
+that OR and AND have precedence over '=', '<' etc; thus the
+need for brackets at times as shown below :
+
+       IF (A<10) AND (A>5) THEN...
+
+   the statement :
+
+       IF A<10 AND (A>5) THEN...
+
+   would be parsed (analysed) as:
+
+       IF A<(10 AND (A>5)) THEN...
+
+   thus producing an un-intended resuld.
+
+
+There are some CONTEXT-SENSITIVE RULES and meanings that
+cannot be inferred from the syntax diagrams, and may be
+particular to this implementation:
+
+5. For the TRS-80, '(' and ')' are used instead of square
+brackets.
+
+6. IDENTIFIER NAMES must start with a letter and may be
+followed with letters or digits, but only the first four
+characters are significant. However, reserved words must be
+typed in full.
+
+7. Identifiers must be declared before used. Identifiers
+can be declared twice, but ONLY THE LAST ONE IS USED.
+Formal parameters of a procedure need not (and should not)
+be declared again inside the procedure.
+
+8. Parameters are passed to procedures or functions by
+value, ie a copy of the value of the parameter as defined
+before the call.
+
+9. The SCOPE RULES for identifiers are the same ones used
+by any block-structure language. The scope of a variable is
+the procedure that contains it. An inner procedure can use
+a variable defined in an outer procedure.
+
+10.The only DATA TYPES Tiny Pascal supports are integers
+and one-dimensioned integer arrays. The integers are 16-bit
+signed. The arrays start at 0. Arrays are NOT CHECKED for
+subscript-out-of-range at runtime.
+
+11.BUILT-IN FUNCTIONS:
+
+FUNCTION               MEANING
+A DIV B           Truncated integer division: 27 DIV 5 = 5
+A MOD B           A-(A DIV B)*B: 27 MOD 5 = 2
+A SHL B           Left shift A by B: 27 SHL 2 = 54
+A SHR B           Right shift A by B: 27 SHR 2 = 13
+
+   The built-in array MEM can be used to read to (if it
+appears in the left side of an assignment) or from (if it
+appears in an expression) a specified memory location such
+as :
+
+      A:=MEM(24467)+3; (*READ FROM MEMORY*)
+      MEM(T)=0; (*WRITE TO MEMORY*)
+
+   A second form of the MEM function is MEMW. this enables
+a two-byte word to be read to or from memory using the same
+convention as for MEM. NOTE: the low-order byte comes
+first, in accordance with INTEL convention.
+
+12.HEX CONSTANTS are prefixed with '%', eg, %2A00
+
+13.STRINGS are enclosed by SINGLE QUOTES - NOT DOUBLE. When
+a string appears in an expression or as a CASE label, it
+has the value equal to the ASCII value of the first
+character of the string.
+   When a string appears in the WRITE statement, the entire
+string would be output. For example:
+
+      X:='ABCD'
+
+   X would equal 65 (ASCII 'A')
+
+14.The READ and WRITE statements are character oriented,
+not line oriented. More than one character can be input or
+output with a single statement. Decimal numbers or HEX
+numbers can be read in from the keyboard by a '#' (decimal)
+or a '%' (hex) after the variable in the READ statement.
+Similarly, a decimal integer can be printed on the output
+device by FOLLOWING the expression with the appropriate '#'
+or '%' for hex.
+
+      READ (A,B,C,I#,J%)
+
+   This would READ three characters, a decimal number, and
+a HEX number.
+
+      A:=65
+      WRITE ('HELLO? ',A, ,A#, ,A%)
+
+   would print:
+
+      HELLO?   A   65   0041
+
+15.Since the READ is character-oriented, it is necessary to
+terminate an integer input by a non-integer character (such
+as <ENTER> or    <SPACEBAR>). To input a HEX number, four
+digits must be typed.
+
+16.To write on a new line, it is necessary to output the
+ASCII code for <carriage-return-line-feed> to the output
+device. that is, you must manually insert a <CR/LF>. For
+the TRS-80 this can be accomplished by outputting a <CR>
+alone (the TRS-80 software does the rest). For example:
+
+      WRITE ('THIS IS A TEST',13)
+      (note: 13 is an ASCII <CR>)
+
+17.An expression in the IF, WHILE, and REPEAT statements is
+said to fulfill the condition if the least significant bit
+is a one. This is equivalent to testing whether the
+expression is odd. Thus, after :
+
+      IF X THEN A:=1 ELSE A:=100
+
+   A would have the value 1 if X is odd, and 100 if X is
+even.
+
+18.The RELATIONAL OPERATORS (=, =>, etc) always produce a
+value of zero or one. Thus, after :
+
+      A:=X=5
+
+   A equals one if X equals 5; otherwise A equals zero.
+
+19.Comments are opened by '(*' and closed by '*)'
+
+20.Here is a list of built-in functions and procedures :
+
+      ABS(exp)
+
+   returns the absolute value of (exp)
+
+      CALL(exp)
+
+   a user-defined machine-language subroutine where (exp)
+is an address to the routine. Subroutines must conform to
+the following:
+
+          1) save all registers upon entry
+          2) restore all registers before exit
+          3) return from the subroutine in the following
+             fashion:
+
+                   INC   DE
+                   INC   DE
+                   RET
+
+      INKEY          Inputs from the keyboard,  used like
+                     this:   A:=INKEY
+
+      INP(exp)       Inputs from port(exp). eg A:=INP(exp)
+
+      MOVE(b,a,n)    MOVE n bytes of memory from address a
+                     to address b.
+
+      OUTP(a,x)      outputs x to port a
+
+      PLOT(x,y,a)    plots graphics to screen, using the
+                     x,y coordinates. If a is odd, then
+                     plot is 'set', otherwise it is
+                     'reset'.
+
+      POINT(x,y)     Just like BASIC; returns 1 if the
+                     point is set, zero if it is not.
+
+      SQR(exp)       Returns the square of (exp)
+
+21.The screen control characters are the same as TRS-80
+BASIC. for example, use WRITE (28,31) to clear the screen.
+
+5/STARTING INSTRUCTIONS
+
+In this section we will go step-by-step from loading the
+tape the first time, to running your first program. Side
+one of your tape comes with three sample programs: the
+first is loaded with the system, the second is HILBER and
+the third is BLOCK. Side two contains the big 32K/48K
+compiler and source to Tiny Pascal, PAS32K and COMPS1
+respectively.
+
+START-UP
+
+TAPE :
+
+Turn on your machine. When asked MEMORY SIZE? or MEM SIZE?
+or READY?, respond by pressing <ENTER>
+
+Type SYSTEM <ENTER>. You will see   *?_
+
+Rewind your Tiny Pascal tape if necessary, and type
+PASCAL<ENTER>, and press the <PLAY> button.
+
+The tape will begin to load, and an asterix will blink
+about every four seconds in the top right corner of the
+screen. The entire load will take about three minutes.
+
+Once the tape has loaded, and you get *?_ again, type
+/<ENTER>. At this point you will get the message:
+      TINY PASCAL V-x.y
+
+If you have got this far, you may proceed to the section
+below (CREATING A PROGRAM). Otherwise, try loading the tape
+again. Try different volume settings.
+
+DISK :
+
+Switch on the computer, drives, expander and printer.
+Place the disk containing the TIPASCAL/CMD file into drive
+0 and press <RESET>.
+At DOS READY_, type TIPASCAL<ENTER>
+You should be greeted with :
+      TINY PASCAL V-x.y
+      ._
+The dot is the normal prompt for the disk version of the
+monitor.
+
+
+CREATING A PROGRAM
+
+1. From the monitor, type  E. This will place you in the
+editor. If you are using the cassette version, you will
+see a set of statistics on the sample program loaded
+with the system. If this is your very first try, then skip
+ahead to step 5, otherwise proceed.
+
+2. To delete the sample program which is always loaded with
+the system, you simply use the editor command  D*. D* will
+delete all lines of any program in memory, and place the
+editor into INSERT mode.
+
+3. At this point, you may type in a program of your own
+choice.
+
+4. Once your program is entered, you may exit the INSERT
+mode by pressing <ENTER> at the start of a blank line. This
+puts the editor back into Command mode.
+
+5. To return to the monitor, press Q for QUIT.
+
+
+COMPILING, RUNNING, SAVING/LOADING A PROGRAM
+
+1. Normally, to compile a source program, you press
+C<ENTER> from the monitor. This creates P-code. If there
+are any sysntax errors, they will show up here. If this
+happens, use the error list in chapter 7, and edit the
+source code to correct them before re-compiling. NOTE:
+other compilation options are discussed below, as well as
+on page 2.
+
+2. Once you have successfully compiled the program, you may
+run it from the monitor by typing R<ENTER>.
+
+3. To save the program, use WPfilename or WSfilename (disk
+version requires WS"filename" or WP"filename")
+
+4. REMEMBER!!! YOU MUST RECOMPILE THE PROGRAM IF YOU MAKE
+CHANGES IN THE SOURCE.
+
+5. To load a previously stored program, use LSfilename or
+LPfilename (disk = LS"filename" or LP"filename"). If you
+try to load a source file with LP, or a P-code file with
+LS, errors will occur, and you may have to re-load the Tiny
+Pascal system.
+
+
+SPECIAL NOTES :
+
+The <BREAK> key will pause program execution. Press any
+other key to re-start. If you press <BREAK> twice in a row,
+you will terminate the run and return to the monitor.
+
+Once a program has been compiled, only the P-code (compiled
+program) need be loaded for execution. In other words, it
+is NOT necessary to re-compile before each run if you have
+saved the P-code.
+
+If an error "1001" occurs during compilation, there is not
+enough memory. You should try using C/-S. BE SURE YOU HAVE
+SAVED THE SOURCE BEFORE USING THIS!!!
+
+When a 'memory full' error occurs while running a program,
+either cut down your array size or try using the R/-C
+option. Be sure to save source first!!!
+
+We know that you will enjoy using Tiny Pascal, and
+recommend that you play with it a while just to get the
+hang of it and to become familiar with all its features.
+
+6/USING THE 32K TINY PASCAL
+
+This is the version that disk users get. For tape users, on
+side two of your tape is the expanded Tiny Pascal compiler.
+That is, it can handle larger programs. You will need at
+least 32K to be able to use it. It is exactly the same as
+the 16K version, except that it will use all the memory you
+have in your computer.
+
+To use it, simply follow the directions in chapter 5, using
+PAS32K instead of PASCAL to load it. The compiler source
+code is immediately after PAS32K on side two (disk version
+source is a separate file on the disk). It is called
+'COMPS1'. Use LSCOMPS1 (LS"COMPS1") to load this file. You
+can then examine the source to the compiler. You do not
+need to do this. It is for your interest only. You can use
+it to study the design and exact implementation of Tiny
+Pascal. The source to Tiny Pascal is written in Tiny
+Pascal.
+
+NOTE: Compiled programs are not interchangeable between the
+two compilers.
+
+7/ERROR CODES
+
+   1: Error in Simple Type
+   2: Identifier expected
+   3: "PROGRAM" expected
+   4: ")" expected
+   5: ":" expected
+   6: Illegal Symbol
+   7: Error in Parameter List
+   8: "Of" expected
+   9: "(" expected
+  10: Error in Type
+  11: "(" expected
+  12: ")" expected
+  13: End expected
+  14: ";" expected
+  15: Integer expected
+  16: "=" expected
+  17: "Begin" expected
+  18: Error in Declaration Part
+  19: Error in Field-list
+  20: "," expected
+  21: "*" expected
+
+  50: Error in Constant
+  51: ":=" expected
+  52: "Then" expected
+  53: "Until" expected
+  54: "Do" expected
+  55: "To"/"Downto" expected
+  56: "If" expected
+  57: "File" expected
+  58: Error in Factor
+  59: Error in Variable
+
+ 101: Identifier Declared Twice
+ 102: Low Bound Exceeds High Bound
+ 103: Identifier is Not of Appropriate Class
+ 104: Identifier not Declared
+ 105: Sign not Allowed
+ 106: Number expected
+ 107: Incompatible Subrange Types
+ 108: File not Allowed Here
+ 109: Type must not be REAL
+ 110: Tagfield Type must be Scalar
+ 111: Incompatible with Tagfield Type
+ 112: Index Type must not be REAL
+ 113: Index Type must be Scalar
+ 114: Base Type must not be REAL
+ 115: Base Type must be Scalar
+ 116: Error in Type of Standard Procedure Parameter
+ 117: Unsatisfied Forward Reference
+ 118: Forward Reference Type Identifier in Variable Declaration
+ 119: Forward Declared; Repetition not Allowed
+ 120: Function Result Type must be Scalar
+ 121: File Value Parameter not Allowed
+ 122: Forward Declaration Function, Repetition not Allowed
+ 123: Missing Result Type in Function Declaration
+ 124: F-Format for Real Only
+ 125: Error in Type of Standard Function Parameter
+ 126: Number of Parameters does not agree with Declaration
+ 127: Illegal Parameter Substitution
+ 128: Result Type of Parameter Function does not agree with
+      Declaration
+ 129: Type Conflict of Operands
+ 130: Expression is not of Set Type
+ 131: Tests on Equality Allowed Only
+ 132: Strict Inclusion not Allowed
+ 133: file Comparison not Allowed
+ 134: Illegal Type of Operand
+ 135: Type of Operand must be Boolean
+ 136: Set Element Type must be Scalar
+ 137: Set Element Types not Compatible
+ 138: Type of Variable is not Array
+ 139: Index Type is not compatible with Declaration
+ 140: Type of Variable is not Record
+ 141: Type of Variable must be File or Pointer
+ 142: Illegal Parameter Substitution
+ 143: Illegal Type of Loop Control Variable
+ 144: Illegal Type of Expression
+ 145: Type Conflict
+ 146: Assignment of Files not Allowed
+ 147: Label Type Incompatible with Selecting Expression
+ 148: Subrange Bounds must be Scalar
+ 149: Index Type must not be Integer
+ 150: Assignment to Standard Function is not Allowed
+ 151: Assignment to Formal Function is not Allowed
+ 152: No such Field in this Record
+ 153: Type Error in READ
+ 154: Actual Parameter must be a Variable
+ 155: Control Variable must be Neither Formal nor Non-Local
+ 156: Multi-defined Case Label
+ 157: Too Many Cases in CASE Statement
+ 158: Missing Corresponding Variant Declaration
+ 159: Real or String Tagfields not Allowed
+ 160: Previous Declaration was not Forward
+ 161: Again Forward Declared
+ 162: Parameter Size must be Constant
+ 163: Missing Variant in Declaration
+ 164: Substitution of Standard Proc./Funct. not Allowed
+ 165: Multi-defined Label
+ 166: Multi-declared label
+ 167: Undeclared Label
+ 168: Undefined Label
+ 169: Error in Base Set
+ 170: Value Parameter expected
+ 171: Standard File was Re-declared
+ 172: Undeclared External File
+ 173: (Not Relevant)
+ 174: Pascal Procedure or Function expected
+ 175: Missing Input File
+ 176: Missing Output File
+
+ 201: Error in Real Constant: Digit expected
+ 202: String Constant must not Exceed Source Line
+ 203: Integer Constant Exceeds Range
+ 204: (not Relevant)
+
+ 250: Too Many Nested Scopes of Identifiers
+ 251: Too many Nested Procedures and/or Functions
+ 252: Too many Forward References or Procedure Entries
+ 253: Procedure Too Long
+ 254: Too Many Long Constants in this Procedure
+ 255: Too Many Errors in this Source Line
+ 256: Too Many External References
+ 257: Too Many Externals
+ 258: Too Many Local Files
+ 259: Expression Too Complicated
+
+ 300: Division by Zero
+ 301: No Case Provided for this Value
+ 302: Index Expression Out of Bounds
+ 303: Value to be Assigned is Out of Bounds
+ 304: Element Expression Out of Range
+
+ 398: Implementation Restriction
+ 399: Variable Dimension Arrays not Implemented
+
+1000: "." Missing
+1001: Out of Memory
+
+
+APPENDIX B/SAMPLE PROGRAMS
+
+(*sample 1*)
+(* SAMPLE TINY PASCAL PROGRAM  BY H.  YUEN *)
+VAR X0,Y0,X,Y,K,F:INTEGER;
+BEGIN
+   X0:=13000; Y0:=18000; F:=11;
+   REPEAT X:=X0; Y:=Y0; WRITE(15,28,31);
+      FOR K:=1 TO 1000 DO BEGIN
+         X:=X+Y DIV 4; Y:=Y-X DIV 5;
+         PLOT(X SHR 8,Y SHR 8,1) END
+      X0:=X0+X0 DIV F; Y0:=Y0+Y0 DIV F;
+      F:=F+F DIV 6
+   UNTIL F>70; WRITE(28,31,'THE SHOW IS OVER')
+END.
+
+
+(*sample 2*)
+(*PLOT HILBERT CURVES OF ORDERS 1 TO N*)
+CONST N=4; H0=32;
+VAR I,H,X,Y,X0,Y0,U,V:INTEGER;
+PROC MOVE;
+VAR I,J:INTEGER;
+   FUNC MIN(A,B);
+      BEGIN IF A>B THEN MIN:=B ELSE MIN:=A END;
+   FUNC MAX(A,B);
+      BEGIN IF A<B THEN MAX:=B ELSE MAX:=A END;
+   BEGIN FOR I:=MIN(X,U) TO MAX(X,U) DO
+      FOR J:=MIN(Y,V) TO MAX(Y,V) DO
+         PLOT(I,J,1);
+      U:=X; V:=Y
+   END;
+
+PROC P(TYP,I);
+   BEGIN IF I>0 THEN
+      CASE TYP OF
+1:      BEGIN P(4,I-1); X:=X-H; MOVE;
+            P(1,I-1); Y:=Y-H; MOVE;
+            P(1,I-1); X:=X+H; MOVE;
+            P(2,I-1) END;
+2:      BEGIN P(3,I-1); Y:=Y+H; MOVE;
+            P(2,I-1); X:=X+H; MOVE;
+            P(2,I-1); Y:=Y-H; MOVE;
+            P(1,I-1) END;
+3:      BEGIN P(2,I-1); X:=X+H; MOVE;
+            P(3,I-1); Y:=Y+H; MOVE;
+            P(3,I-1); A:=X-H; MOVE;
+            P(4,I-1) END;
+4:      BEGIN P(1,I-1); Y:=Y-H; MOVE;
+            P(4,I-1); X:=X-H; MOVE;
+            P(4,I-1); Y:=Y+H; MOVE;
+            P(3,I-1) END
+       END
+    END;
+
+BEGIN (*MAIN*)
+   WRITE(15,28,31,13,' HILBERT CURVES ');
+   I:=0; H:=H0; X0:=H DIV 2; Y0:=X0;
+   REPEAT I:=I+1; H:=H DIV 2;
+      X0:=X0+H DIV 2; Y0:=Y0+H DIV 2;
+      X:=X0+(I-1)*32; Y:=Y0+10; U:=X; V:=Y;
+      P(1,I)
+   UNTIL I=N
+END.
+
+
+(*sample 3*)
+(*BLOCKADE   BY K.M.CHUNG   4/26/79*)
+VAR I,J,SPEED,ABORT,BLNK:INTEGER;
+   SCORE,MARK,MOVE,CURSOR:ARRAY(1) OF INTEGER;
+PROC PSCORE;
+   BEGIN WRITE(SCORE(0)#);
+      MEMW(%4020):=%3FFE; (*SET CURSOR*)
+      WRITE(SCORE(1)#) END;
+
+PROC BLINK;
+VAR T,K,DELAY:INTEGER;
+   BEGIN T:=CURSOR(I)-MOVE(I);
+      FOR K:=1 TO 30 DO BEGIN
+         FOR DELAY:=1 TO 100 DO;
+         IF MEMW(T)=BLNK THEN MEMW(T):=MARK(I)
+            ELSE MEMW(T)=BLNK
+         END
+   END;
+
+BEGIN WRITE('SPEED(1-10)');
+   READ(SPEED#); SPEED:=SPEED*10;
+   MARK(0):='*'+'*'SHL 8; MARK(1):='('+')'SHL 8;
+   BLNK:=' '+' 'SHL 8;
+   SCORE(0):=0; SCORE(1):=0;
+   REPEAT WRITE(15,28,31); (*TURN OFF CURSOR, CLEAR SCREEN*)
+      FOR I:=9 TO 117 DO BEGIN
+         PLOT(I,1,1); PLOT(I,45,1) END;
+      FOR I:=1 TO 45 DO BEGIN
+         PLOT(9,I,1); PLOT(10,I,1);
+         PLOT(116,I,1); PLOT(117,I,1) END;
+      CURSOR(0):=%3C00+64*4+12;
+      CURSOR(1):=%4000-64*4-16;
+      FOR J:=0 TO 1 DO MEMW(CURSOR(J)):=MARK(J);
+      MOVE(0)=64; MOVE(1)=-64;
+      I:=1; ABORT:=0; PSCORE;
+      REPEAT UNTIL INKEY<>0; (*HIT ANY KEY TO START*)
+      REPEAT I:=1-I;
+         FOR J=1 TO SPEED DO
+            CASE INKEY OF
+                'W':MOVE(0):=-64; 'X':MOVE(0):=64;
+                'D':MOVE(0):=2;   'A':MOVE(0):=-2;
+                'O':MOVE(1):=-64; '.':MOVE(1):=64;
+                ';':MOVE(1):=2;   'K':MOVE(1):=-2;
+            END;
+         CURSOR(I):=CURSOR(I)+MOVE(I);
+         IF MEMW(CURSOR(I))=BLNK THEN MEMW(CURSOR(I)):=MARK(I)
+         ELSE BEGIN SCORE(1-I):=SCORE(1-I)+1;
+            ABORT:=1; BLINK END
+      UNTIL ABORT
+   UNTIL SCORE(1-I)>=10
+END.
+
+                                                                                                                                               

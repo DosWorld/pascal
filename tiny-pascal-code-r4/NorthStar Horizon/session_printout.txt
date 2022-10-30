@@ -1,0 +1,256 @@
+
+NORTH STAR DOS 5.2DQ AT 2000
++GO BASIC
+READY
+LOAD PASCOMP
+READY
+RUN
+
+
+         'TINY' PASCAL COMPILER FOR P-MACHINE
+
+
+
+
+
+
+
+
+
+             CLEAR P-CODE AREA? Y
+
+               CLEARING P-CODE AREA (0000-19FF)
+                     (TAKES 30 SECONDS)
+
+
+
+
+
+
+
+            WANT CODE PRINTED? Y
+
+
+
+     ENTER PASCAL SOURCE CODE. IF SOURCE IS ON DISK FILE
+             PREFIX DISKFILE NAME WITH '$'
+
+
+   0 ?$HANOIPAS
+   0 { PROGRAM hanoi }
+   0 VAR TOTAL:INTEGER;
+   0  JMP     0     0
+   1  
+   1 PROC MOVETOWER (HEIGHT,FROMNEEDLE,TONEEDLE,USINGNEEDLE);
+   1 PROC MOVEDISK (TAKEOFF,PUTON);
+   1  JMP     0     0
+   2   BEGIN
+   2  JMP     0     0
+   3     WRITE(' Take off ',TAKEOFF#,' and put onto ',
+ ADD AT 2 CHANGED TO 3
+   3  INT     0     3
+   4  LIT     0    32
+   5  LIT     0    84
+   6  LIT     0    97
+   7  LIT     0   107
+   8  LIT     0   101
+   9  LIT     0    32
+  10  LIT     0   111
+  11  LIT     0   102
+  12  LIT     0   102
+  13  LIT     0    32
+  14  LIT     0    10
+  15  CSP     0     8
+  16  LOD     0    -2
+  17  CSP     0     3
+  18  LIT     0    32
+  19  LIT     0    97
+  20  LIT     0   110
+  21  LIT     0   100
+  22  LIT     0    32
+  23  LIT     0   112
+  24  LIT     0   117
+  25  LIT     0   116
+  26  LIT     0    32
+  27  LIT     0   111
+  28  LIT     0   110
+  29  LIT     0   116
+  30  LIT     0   111
+  31  LIT     0    32
+  32  LIT     0    14
+  33  CSP     0     8
+  34           PUTON#,13,10);
+  34  LOD     0    -1
+  35  CSP     0     3
+  36  LIT     0    13
+  37  CSP     0     1
+  38  LIT     0    10
+  39  CSP     0     1
+  40   END;{MOVEDISK}
+  40  OPR     0     0
+  41 BEGIN { MOVETOWER }
+  41   IF HEIGHT > 0
+ ADD AT 1 CHANGED TO 41
+  41  INT     0     3
+  42  LOD     0    -4
+  43  LIT     0     0
+  44     THEN
+  44  OPR     0    12
+  45       BEGIN
+  45  JPC     0     0
+  46 MOVETOWER (HEIGHT-1,FROMNEEDLE,USINGNEEDLE, TONEEDLE);
+  46  LOD     0    -4
+  47  LIT     0     1
+  48  OPR     0     3
+  49  LOD     0    -3
+  50  LOD     0    -1
+  51  LOD     0    -2
+  52  CAL     1    41
+  53  INT     0    -4
+  54         MOVEDISK(FROMNEEDLE,TONEEDLE);
+  54  LOD     0    -3
+  55  LOD     0    -2
+  56  CAL     0     3
+  57  INT     0    -2
+  58         MOVETOWER(HEIGHT-1,USINGNEEDLE,
+  58  LOD     0    -4
+  59  LIT     0     1
+  60  OPR     0     3
+  61  LOD     0    -1
+  62                    TONEEDLE,FROMNEEDLE)
+  62  LOD     0    -2
+  63  LOD     0    -3
+  64  CAL     1    41
+  65  INT     0    -4
+  66       END
+  66  END; { MOVETOWER }
+ ADD AT 45 CHANGED TO 66
+  66  OPR     0     0
+  67 BEGIN { hanoi }
+  67  WRITE(13,10,10,' THE TOWERS OF HANOI',13,10,10);
+ ADD AT 0 CHANGED TO 67
+  67  INT     0     4
+  68  LIT     0    13
+  69  CSP     0     1
+  70  LIT     0    10
+  71  CSP     0     1
+  72  LIT     0    10
+  73  CSP     0     1
+  74  LIT     0    32
+  75  LIT     0    84
+  76  LIT     0    72
+  77  LIT     0    69
+  78  LIT     0    32
+  79  LIT     0    84
+  80  LIT     0    79
+  81  LIT     0    87
+  82  LIT     0    69
+  83  LIT     0    82
+  84  LIT     0    83
+  85  LIT     0    32
+  86  LIT     0    79
+  87  LIT     0    70
+  88  LIT     0    32
+  89  LIT     0    72
+  90  LIT     0    65
+  91  LIT     0    78
+  92  LIT     0    79
+  93  LIT     0    73
+  94  LIT     0    20
+  95  CSP     0     8
+  96  LIT     0    13
+  97  CSP     0     1
+  98  LIT     0    10
+  99  CSP     0     1
+ 100  LIT     0    10
+ 101  CSP     0     1
+ 102  WRITE('Enter Height of Stack');READ(TOTAL#);
+ 102  LIT     0    69
+ 103  LIT     0   110
+ 104  LIT     0   116
+ 105  LIT     0   101
+ 106  LIT     0   114
+ 107  LIT     0    32
+ 108  LIT     0    72
+ 109  LIT     0   101
+ 110  LIT     0   105
+ 111  LIT     0   103
+ 112  LIT     0   104
+ 113  LIT     0   116
+ 114  LIT     0    32
+ 115  LIT     0   111
+ 116  LIT     0   102
+ 117  LIT     0    32
+ 118  LIT     0    83
+ 119  LIT     0   116
+ 120  LIT     0    97
+ 121  LIT     0    99
+ 122  LIT     0   107
+ 123  LIT     0    21
+ 124  CSP     0     8
+ 125  CSP     0     2
+ 126  STO     0     3
+ 127     WRITE(13,10,10);
+ 127  LIT     0    13
+ 128  CSP     0     1
+ 129  LIT     0    10
+ 130  CSP     0     1
+ 131  LIT     0    10
+ 132  CSP     0     1
+ 133   MOVETOWER(TOTAL,1,3,2)
+ 133  LOD     0     3
+ 134  LIT     0     1
+ 135  LIT     0     3
+ 136  LIT     0     2
+ 137  CAL     0    41
+ 138  INT     0    -4
+ 139 END. {hanoi}
+ 139  OPR     0     0
+
+   PSIZE OF P-CODES: 3 BLOCKS
+
+ INTERPRET (I) OR TRANSLATE (T)? T
+*** P-CODE TO 8080 TRANSLATION ***
+ HEX ADDRESS OF 8080 RUNTIME CODE: 1A00
+ HEX ADDRESS OF TINY PASCAL PCODE: 0000
+ HEX ADDRESS OF 8080 PROGRAM CODE: C000
+ STACK START ADDR.(HEX):D800
+ STACK END ADDR.(HEX):E7FF
+ 8 REFERENCES
+ 4 ACTUAL LABELS
+
+   0  C009 0C 0F 0F 15 1B 21 27 2D 33 39 3F 45 4B 51 
+  15  C057 24 2A 2D 33 39 3F 45 4B 51 57 5D 63 69 6F 
+  30  C075 7B 81 87 40 46 49 4F 52 58 5B 5E 64 6A 6F 
+  45  C072 79 7F 85 82 88 8E 94 9C A2 A8 AE B4 B8 BE 
+  60  C0C4 C1 C7 CD D3 DB E1 E4 EA F0 F3 F9 FC 02 05 
+  75  C10B 11 17 1D 23 29 2F 35 3B 41 47 4D 53 59 5F 
+  90  C165 6B 71 77 7D 83 1E 24 27 2D 30 36 39 3F 45 
+ 105  C14B 51 57 5D 63 69 6F 75 7B 81 87 8D 93 99 9F 
+ 120  C1A5 AB B1 B7 BD 53 56 5C 62 65 6B 6E 74 77 7D 
+ 135  C183 89 8F 95 9B 9E 
+   3 FORWARD REFERENCES
+ P-CODE.. 140 INSTRUCTIONS
+ 8080.. 414 BYTES
+P-CODE:8080 = .73928571
+* END TRANSLATION *
+READY
+BYE
++LF PASRUN1A 1A00
++JP C000
+
+
+ THE TOWERS OF HANOI
+
+Enter Height of Stack?3
+
+ Take off 1 and put onto 3
+Take off 1 and put onto 2
+Take off 3 and put onto 2
+ Take off 1 and put onto 3
+Take off 2 and put onto 1
+ Take off 2 and put onto 3
+ Take off 1 and put onto 3
++
+
+
