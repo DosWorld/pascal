@@ -13,5 +13,6 @@ All of these are in the public domain or free:
 - p6-v1.0 :: p6 by Richard Sprague http://wirth-dijkstra-langs.org/
 - tiny-pascal-code-r4 :: Chung Yuen Tiny Pascal from BYTE 1978 https://sourceforge.net/projects/tiny-pascal/
 - Lilith-and-Modula-2 :: Multi-pass and single-pass Modula-2 compilers https://astrobe.com/Modula2/ https://github.com/ghoss/m2emul
+- oberon0 :: Compiler from book "Compiler Construction" by Niklaus Wirth https://people.inf.ethz.ch/wirth/CompilerConstruction/index.html
 
 See license in each directory. Compilers by Niklaus Wirth is public domain.
